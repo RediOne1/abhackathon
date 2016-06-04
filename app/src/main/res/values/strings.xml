@@ -1,0 +1,12 @@
+<resources>
+	<string name="app_name">My Debts</string>
+	<string name="login">Login</string>
+	<string name="password">Password</string>
+	<string name="sign_in">Sign in</string>
+	<string name="sign_up">Sign up</string>
+	<string name="mail">Mail</string>
+	<string name="something_went_wrong">Something went wrong</string>
+	<string name="persons">Persons</string>
+	<string name="events">Events</string>
+	<string name="invoice">Invoice</string>
+</resources>
