@@ -1,5 +1,7 @@
 package pl.applover.mydebts;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -42,7 +45,25 @@ public class PersonsFragment extends Fragment implements ChildEventListener {
 		super.onViewCreated(view, savedInstanceState);
 
 		layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-		adapter = new PersonsAdapter(adapterList);
+		adapter = new PersonsAdapter(adapterList, new PersonsAdapter.ViewHolder.OnItemClickListener() {
+			@Override
+			public void onItemClick(int position, View rootView, ImageView imageView) {
+				Intent intent = new Intent(PersonsFragment.this.getContext(), PersonActivity.class);
+				User user = adapterList.get(position);
+				intent.putExtra(PersonActivity.USER_ID, user.getUid());
+				// create the transition animation - the images in the layouts
+				// of both activities are defined with android:transitionName="robot"
+				ActivityOptions options = null;
+				if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+					options = ActivityOptions
+							.makeSceneTransitionAnimation(PersonsFragment.this.getActivity(), imageView, "transition_user_image");
+
+					// start the new activity
+					startActivity(intent, options.toBundle());
+				} else
+					startActivity(intent);
+			}
+		});
 		recyclerView = (RecyclerView) view.findViewById(R.id.persons_recyclerView);
 
 		recyclerView.setLayoutManager(layoutManager);

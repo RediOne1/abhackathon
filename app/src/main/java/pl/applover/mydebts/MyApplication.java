@@ -50,8 +50,8 @@ public class MyApplication extends Application implements FirebaseAuth.AuthState
 		if (fireUser != null) {
 			User user = new User(fireUser);
 			UserProfileChangeRequest builder = new UserProfileChangeRequest.Builder()
-					.setPhotoUri(Uri.parse("https://i.ytimg.com/vi/tvbyY7oMT2E/maxresdefault.jpg"))
-					.setDisplayName("Lubie placki i ziemniaki")
+					.setPhotoUri(Uri.parse("http://applover.pl/debt/3.png"))
+					.setDisplayName("Adrian Kuta")
 					.build();
 
 

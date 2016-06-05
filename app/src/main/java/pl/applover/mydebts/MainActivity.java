@@ -7,13 +7,14 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, TabLayout.OnTabSelectedListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 	private ViewPager pager;
 	private MainPagerAdapter pagerAdapter;
-	private int selectedTab = 0;
+	private TabLayout tabLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
-		TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-		tabLayout.setOnTabSelectedListener(this);
+		tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+
 
 		pagerAdapter = new MainPagerAdapter(this, getSupportFragmentManager());
 
@@ -39,12 +40,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	}
 
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.menu_main, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
 	public void onClick(View v) {
 		int id = v.getId();
 		if (id == R.id.fab) {
-			if (selectedTab == 0)
+			if (tabLayout.getSelectedTabPosition() == 0)
 				addPerson();
-			else if (selectedTab == 1)
+			else if (tabLayout.getSelectedTabPosition() == 1)
 				addInvoice();
 		}
 	}
@@ -55,20 +62,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 	private void addInvoice() {
 		startActivity(new Intent(this, AddEventActivity.class));
-	}
-
-	@Override
-	public void onTabSelected(TabLayout.Tab tab) {
-		selectedTab = tab.getPosition();
-	}
-
-	@Override
-	public void onTabUnselected(TabLayout.Tab tab) {
-
-	}
-
-	@Override
-	public void onTabReselected(TabLayout.Tab tab) {
-
 	}
 }

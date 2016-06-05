@@ -21,16 +21,18 @@ import pl.applover.mydebts.firebase.User;
 public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.ViewHolder> {
 
 	private List<User> userList;
+	private ViewHolder.OnItemClickListener listener;
 
-	public PersonsAdapter(List<User> userList) {
+	public PersonsAdapter(List<User> userList, ViewHolder.OnItemClickListener listener) {
 		this.userList = userList;
+		this.listener = listener;
 	}
 
 	@Override
 	public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 		View view = inflater.inflate(R.layout.single_person_layout, parent, false);
-		ViewHolder holder = new ViewHolder(view);
+		ViewHolder holder = new ViewHolder(view, listener);
 		holder.image = (ImageView) view.findViewById(R.id.user_image);
 		holder.username = (TextView) view.findViewById(R.id.username);
 		holder.price = (TextView) view.findViewById(R.id.price);
@@ -62,8 +64,19 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.ViewHold
 		public TextView price;
 		public TextView eventsCount;
 
-		public ViewHolder(View itemView) {
+		public ViewHolder(final View itemView, final OnItemClickListener listener) {
 			super(itemView);
+			itemView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if (listener != null)
+						listener.onItemClick(getAdapterPosition(), itemView, image);
+				}
+			});
+		}
+
+		public interface OnItemClickListener {
+			void onItemClick(int position, View rootView, ImageView imageView);
 		}
 	}
 }
