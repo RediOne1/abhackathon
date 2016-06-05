@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +38,9 @@ public class AddEventUserAdapter extends RecyclerView.Adapter<AddEventUserAdapte
 		ViewHolder holder = new ViewHolder(view);
 		holder.image = (ImageView) view.findViewById(R.id.user_image);
 		holder.username = (TextView) view.findViewById(R.id.username);
+		holder.to_paid = (EditText) view.findViewById(R.id.to_paid);
+		holder.paid = (EditText) view.findViewById(R.id.paid);
+		holder.diff = (EditText) view.findViewById(R.id.diff);
 		return holder;
 	}
 
@@ -60,8 +64,12 @@ public class AddEventUserAdapter extends RecyclerView.Adapter<AddEventUserAdapte
 			}
 		});
 
-
-
+		holder.paid.setText("" + balance.paid);
+		holder.to_paid.setText("" + balance.expectedValue);
+		float to_paid = Float.parseFloat("" + balance.expectedValue);
+		float paid = Float.parseFloat("" + balance.paid);
+		float diff = to_paid - paid;
+		holder.diff.setText("" + diff);
 	}
 
 	@Override
@@ -73,6 +81,9 @@ public class AddEventUserAdapter extends RecyclerView.Adapter<AddEventUserAdapte
 
 		public ImageView image;
 		public TextView username;
+		public EditText to_paid;
+		public EditText paid;
+		public EditText diff;
 
 		public ViewHolder(View itemView) {
 			super(itemView);

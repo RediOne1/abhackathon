@@ -1,5 +1,5 @@
 <resources>
-	<string name="app_name">My Debts</string>
+	<string name="app_name">Debt</string>
 	<string name="login">Login</string>
 	<string name="password">Password</string>
 	<string name="sign_in">Sign in</string>
@@ -13,4 +13,6 @@
 	<string name="amount">Amount</string>
 	<string name="added_persons">Added persons</string>
 	<string name="diff">Diff</string>
+	<string name="to_paid">To paid</string>
+	<string name="paid">Paid</string>
 </resources>
