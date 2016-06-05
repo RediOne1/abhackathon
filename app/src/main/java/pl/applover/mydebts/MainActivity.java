@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	}
 
 	private void addPerson() {
-		startActivity(new Intent(this, AddEventActivity.class));
+		startActivity(new Intent(this, AddPersonActivity.class));
 	}
 
 	private void addInvoice() {

@@ -4,12 +4,21 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:background="@drawable/bg_02"
+	android:gravity="center"
 	android:orientation="vertical"
 	android:paddingBottom="@dimen/activity_vertical_margin"
 	android:paddingLeft="@dimen/activity_horizontal_margin"
 	android:paddingRight="@dimen/activity_horizontal_margin"
 	android:paddingTop="@dimen/activity_vertical_margin"
 	tools:context="pl.applover.mydebts.LoginActivity">
+
+	<ImageView
+		android:layout_width="150dp"
+		android:layout_height="150dp"
+		android:layout_gravity="center"
+		android:adjustViewBounds="true"
+		android:src="@drawable/mobile_04"/>
 
 	<android.support.design.widget.TextInputLayout
 		android:layout_width="match_parent"
@@ -33,18 +42,27 @@
 			android:hint="@string/password"/>
 	</android.support.design.widget.TextInputLayout>
 
-	<Button
-		android:id="@+id/sign_in_button"
+	<LinearLayout
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:text="@string/sign_in"/>
+		android:layout_height="wrap_content">
 
-	<Button
-		android:id="@+id/sign_up_button"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:text="@string/sign_up"/>
+		<pl.applover.mydebts.ColorableButton
+			android:id="@+id/sign_in_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="@android:color/white"
+			android:layout_gravity="center"
+			android:text="@string/sign_in"/>
+
+		<TextView
+			android:id="@+id/sign_up_button"
+			android:layout_width="wrap_content"
+			android:inputType="textPassword"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginLeft="16dp"
+			android:layout_marginStart="16dp"
+			android:text="@string/sign_up"/>
+	</LinearLayout>
 
 </LinearLayout>

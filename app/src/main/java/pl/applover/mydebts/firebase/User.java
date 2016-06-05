@@ -24,6 +24,8 @@ public class User {
 	public Map<String, Boolean> connected_users = new HashMap<>();
 	public String photoUrl;
 	private String key;
+	public double price;
+	public int eventsCount;
 
 	public User() {
 

@@ -9,8 +9,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import pl.applover.mydebts.firebase.User;
@@ -34,6 +33,8 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.ViewHold
 		ViewHolder holder = new ViewHolder(view);
 		holder.image = (ImageView) view.findViewById(R.id.user_image);
 		holder.username = (TextView) view.findViewById(R.id.username);
+		holder.price = (TextView) view.findViewById(R.id.price);
+		holder.eventsCount = (TextView) view.findViewById(R.id.eventsCount);
 		return holder;
 	}
 
@@ -43,6 +44,10 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.ViewHold
 		holder.username.setText(user.displayName);
 		ImageLoader imageLoader = ImageLoader.getInstance();
 		imageLoader.displayImage(user.photoUrl, holder.image);
+		DecimalFormat df = new DecimalFormat("#.00");
+		holder.price.setText(df.format(user.price));
+		df = new DecimalFormat("#");
+		holder.eventsCount.setText(df.format(user.eventsCount));
 	}
 
 	@Override
@@ -54,6 +59,8 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.ViewHold
 
 		public ImageView image;
 		public TextView username;
+		public TextView price;
+		public TextView eventsCount;
 
 		public ViewHolder(View itemView) {
 			super(itemView);

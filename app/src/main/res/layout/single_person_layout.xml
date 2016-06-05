@@ -6,22 +6,72 @@
 
 	<android.support.v7.widget.CardView
 		android:layout_width="match_parent"
-		android:elevation="6dp"
+		android:layout_height="wrap_content"
 		android:layout_margin="10dp"
-		android:layout_height="wrap_content">
+		android:elevation="6dp">
 
-		<ImageView
-			android:id="@+id/user_image"
-			android:layout_width="50dp"
-			android:layout_height="50dp"
-			android:adjustViewBounds="true"
-			android:scaleType="centerCrop"/>
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="8dp">
 
-		<TextView
-			android:id="@+id/username"
-			android:layout_gravity="center"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"/>
+			<ImageView
+				android:id="@+id/user_image"
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:adjustViewBounds="true"
+				android:scaleType="centerCrop"/>
+
+			<TextView
+				android:id="@+id/username"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginLeft="8dp"
+				android:layout_marginStart="8dp"
+				android:layout_toRightOf="@+id/user_image"
+				android:textSize="18sp"/>
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/username"
+				android:layout_marginLeft="8dp"
+				android:layout_marginStart="8dp"
+				android:layout_marginTop="8dp"
+				android:layout_toEndOf="@+id/user_image"
+				android:layout_toRightOf="@+id/user_image"
+				android:gravity="center"
+				android:orientation="horizontal">
+
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:src="@drawable/ic_monetization_on_black_18dp"/>
+
+				<TextView
+					android:id="@+id/price"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="8dp"
+					android:layout_marginStart="8dp"
+					android:text="dsa"/>
+
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="8dp"
+					android:layout_marginStart="8dp"
+					android:src="@drawable/ic_supervisor_account_black_18dp"/>
+
+				<TextView
+					android:id="@+id/eventsCount"
+					android:layout_marginLeft="8dp"
+					android:layout_marginStart="8dp"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+			</LinearLayout>
+		</RelativeLayout>
 	</android.support.v7.widget.CardView>
 
 </FrameLayout>
