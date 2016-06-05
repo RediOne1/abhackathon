@@ -23,7 +23,7 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
 		case 0:
 			return new PersonsFragment();
 		case 1:
-			return new InvoiceFragment();
+			return new EventFragment();
 		default:
 			return new PersonsFragment();
 	}
@@ -35,7 +35,7 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
 			case 0:
 				return context.getString(R.string.persons);
 			case 1:
-				return context.getString(R.string.invoice);
+				return context.getString(R.string.events);
 			default:
 				return "Page" + (position + 1);
 		}

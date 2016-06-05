@@ -8,5 +8,9 @@
 	<string name="something_went_wrong">Something went wrong</string>
 	<string name="persons">Persons</string>
 	<string name="events">Events</string>
-	<string name="invoice">Invoice</string>
+	<string name="event">Invoice</string>
+	<string name="event_name">Event name</string>
+	<string name="amount">Amount</string>
+	<string name="added_persons">Added persons</string>
+	<string name="diff">Diff</string>
 </resources>

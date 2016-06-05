@@ -18,21 +18,47 @@
 			android:layout_height="wrap_content"
 			android:background="?attr/colorPrimary"
 			android:minHeight="?attr/actionBarSize"
-			app:layout_scrollFlags="scroll|enterAlways|snap"/>
+			app:layout_scrollFlags="scroll|snap"/>
 
-		<android.support.design.widget.TabLayout
-			android:id="@+id/tab_layout"
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			app:layout_scrollFlags="scroll|enterAlways|snap"/>
+			android:background="#AB47BC"
+			android:gravity="center"
+			android:orientation="vertical"
+			android:padding="20dp"
+			app:layout_scrollFlags="scroll|enterAlways|snap">
+
+			<android.support.design.widget.TextInputLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<android.support.design.widget.TextInputEditText
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:hint="@string/event_name"
+					android:maxLines="1"
+					android:minWidth="200dp"/>
+
+			</android.support.design.widget.TextInputLayout>
+
+			<android.support.design.widget.TextInputLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<android.support.design.widget.TextInputEditText
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:hint="@string/amount"
+					android:inputType="number"
+					android:maxLines="1"
+					android:minWidth="200dp"/>
+
+			</android.support.design.widget.TextInputLayout>
+		</LinearLayout>
 	</android.support.design.widget.AppBarLayout>
 
-	<android.support.v4.view.ViewPager
-		android:id="@+id/pager"
-		android:fitsSystemWindows="true"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+	<include layout="@layout/add_event_content"/>
 
 	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/fab"
@@ -43,3 +69,4 @@
 		android:src="@drawable/ic_add_circle_outline_white_24dp"/>
 
 </android.support.design.widget.CoordinatorLayout>
+

@@ -50,7 +50,10 @@ public class MyApplication extends Application implements FirebaseAuth.AuthState
 		if (fireUser != null) {
 			User user = new User(fireUser);
 			UserProfileChangeRequest builder = new UserProfileChangeRequest.Builder()
-					.setPhotoUri(Uri.parse("https://i.ytimg.com/vi/tvbyY7oMT2E/maxresdefault.jpg")).build();
+					.setPhotoUri(Uri.parse("https://i.ytimg.com/vi/tvbyY7oMT2E/maxresdefault.jpg"))
+					.setDisplayName("Lubie placki i ziemniaki")
+					.build();
+
 
 			fireUser.updateProfile(builder);
 
@@ -59,7 +62,7 @@ public class MyApplication extends Application implements FirebaseAuth.AuthState
 					.child("users")
 					.child(fireUser.getUid())
 					.setValue(user);
-
+			FirebaseAuth.getInstance().removeAuthStateListener(MyApplication.this);
 
 		}
 	}

@@ -19,59 +19,58 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import pl.applover.mydebts.firebase.User;
+import pl.applover.mydebts.firebase.Event;
 
 /**
  * author:  Adrian Kuta
  * date:    04.06.2016
  */
-public class PersonsFragment extends Fragment implements ChildEventListener {
+public class EventFragment extends Fragment implements ChildEventListener {
 
-	List<User> adapterList = new ArrayList<>();
+	List<Event> adapterList = new ArrayList<>();
 	RecyclerView recyclerView;
 	RecyclerView.Adapter adapter;
 	RecyclerView.LayoutManager layoutManager;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.persons_fragment, container, false);
+		return inflater.inflate(R.layout.events_fragment, container, false);
 	}
 
 	@Override
 	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
+		adapter = new EventAdapter(adapterList);
 		layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-		adapter = new PersonsAdapter(adapterList);
 		recyclerView = (RecyclerView) view.findViewById(R.id.persons_recyclerView);
-
 		recyclerView.setLayoutManager(layoutManager);
 		recyclerView.setAdapter(adapter);
 
-		DatabaseReference reference = User.getDatabaseReference();
+		DatabaseReference reference = Event.getDatabaseReference();
 		reference.addChildEventListener(this);
 	}
 
 	@Override
 	public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-		User addedUser = dataSnapshot.getValue(User.class);
+		Event addedEvent = dataSnapshot.getValue(Event.class);
 		Log.d("DEBUG_TAG", "test");
 		String key = dataSnapshot.getKey();
-		addedUser.setKey(key);
-		adapterList.add(addedUser);
-		adapter.notifyItemInserted(adapterList.indexOf(addedUser));
+		addedEvent.setKey(key);
+		adapterList.add(addedEvent);
+		adapter.notifyItemInserted(adapterList.indexOf(addedEvent));
 		adapter.notifyDataSetChanged();
 	}
 
 	@Override
 	public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-		User changedUser = dataSnapshot.getValue(User.class);
+		Event changedEvent = dataSnapshot.getValue(Event.class);
 		String key = dataSnapshot.getKey();
-		changedUser.setKey(key);
+		changedEvent.setKey(key);
 		for (int i = 0; i < adapterList.size(); i++) {
-			User user = adapterList.get(i);
-			if (key.equals(user.getUid())) {
-				adapterList.set(i, changedUser);
+			Event event = adapterList.get(i);
+			if (key.equals(event.getUid())) {
+				adapterList.set(i, changedEvent);
 				adapter.notifyItemChanged(i);
 			}
 		}
@@ -81,11 +80,11 @@ public class PersonsFragment extends Fragment implements ChildEventListener {
 	@Override
 	public void onChildRemoved(DataSnapshot dataSnapshot) {
 		String key = dataSnapshot.getKey();
-		Iterator<User> iterator = adapterList.iterator();
+		Iterator<Event> iterator = adapterList.iterator();
 		while (iterator.hasNext()) {
-			User user = iterator.next();
-			if (key.equals(user.getUid())) {
-				int i = adapterList.indexOf(user);
+			Event event = iterator.next();
+			if (key.equals(event.getUid())) {
+				int i = adapterList.indexOf(event);
 				iterator.remove();
 				adapter.notifyItemRemoved(i);
 			}
@@ -103,3 +102,4 @@ public class PersonsFragment extends Fragment implements ChildEventListener {
 
 	}
 }
+

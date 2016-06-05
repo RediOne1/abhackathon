@@ -1,8 +1,5 @@
 package pl.applover.mydebts.firebase;
 
-import android.net.Uri;
-
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.IgnoreExtraProperties;
@@ -17,28 +14,21 @@ import java.util.Map;
  * date:    04.06.2016
  */
 @IgnoreExtraProperties
-public class User {
+public class Event {
 
-	public String displayName;
-	public String mail;
-	public Map<String, Boolean> connected_users = new HashMap<>();
-	public String photoUrl;
+	public String title;
 	private String key;
+	public Map<String, Boolean> connected_users = new HashMap<>();
 
-	public User() {
-
+	public Event() {
 	}
 
-	public User(String mail) {
-		this.mail = mail;
+	public Event(String title){
+		this.title = title;
 	}
 
-	public User(FirebaseUser user) {
-		mail = user.getEmail();
-		displayName = user.getDisplayName();
-		Uri uri = user.getPhotoUrl();
-		if (uri != null)
-			photoUrl = uri.toString();
+	public static DatabaseReference getDatabaseReference() {
+		return FirebaseDatabase.getInstance().getReference().child("events");
 	}
 
 	public List<String> getConnectedUsersIds() {
@@ -55,9 +45,5 @@ public class User {
 
 	public void setKey(String key) {
 		this.key = key;
-	}
-
-	public static DatabaseReference getDatabaseReference() {
-		return FirebaseDatabase.getInstance().getReference().child("users");
 	}
 }
