@@ -4,6 +4,7 @@ import android.net.Uri;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.IgnoreExtraProperties;
 
@@ -23,9 +24,9 @@ public class User {
 	public String mail;
 	public Map<String, Boolean> connected_users = new HashMap<>();
 	public String photoUrl;
-	private String key;
 	public double price;
 	public int eventsCount;
+	private String key;
 
 	public User() {
 
@@ -41,6 +42,10 @@ public class User {
 		Uri uri = user.getPhotoUrl();
 		if (uri != null)
 			photoUrl = uri.toString();
+	}
+
+	public static DatabaseReference getDatabaseReference() {
+		return FirebaseDatabase.getInstance().getReference().child("users");
 	}
 
 	public List<String> getConnectedUsersIds() {
@@ -59,7 +64,15 @@ public class User {
 		this.key = key;
 	}
 
-	public static DatabaseReference getDatabaseReference() {
-		return FirebaseDatabase.getInstance().getReference().child("users");
+	@Exclude
+	public Map<String, Object> toMap() {
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("displayName", displayName);
+		result.put("mail", mail);
+		result.put("photoUrl", photoUrl);
+		result.put("connected_users", connected_users);
+		result.put("eventsCount", eventsCount);
+		result.put("price", price);
+		return result;
 	}
 }

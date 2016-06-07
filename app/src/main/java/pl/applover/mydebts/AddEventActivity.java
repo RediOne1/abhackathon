@@ -59,6 +59,7 @@ public class AddEventActivity extends AppCompatActivity implements View.OnClickL
 		layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 		recyclerView.setLayoutManager(layoutManager);
 		recyclerView.setAdapter(adapter);
+		
 	}
 
 	@Override

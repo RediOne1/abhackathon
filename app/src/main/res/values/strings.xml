@@ -13,7 +13,7 @@
 	<string name="amount">Amount</string>
 	<string name="added_persons">Added persons</string>
 	<string name="diff">Diff</string>
-	<string name="to_paid">To paid</string>
+	<string name="to_paid">To pay</string>
 	<string name="paid">Paid</string>
 	<string name="title_activity_person">PersonActivity</string>
 	<string name="large_text">

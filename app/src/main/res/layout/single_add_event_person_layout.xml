@@ -17,6 +17,8 @@
 			<ImageView
 				android:id="@+id/user_image"
 				android:layout_width="50dp"
+				android:layout_margin="8dp"
+				android:layout_centerVertical="true"
 				android:layout_height="50dp"
 				android:adjustViewBounds="true"
 				android:scaleType="centerCrop"/>

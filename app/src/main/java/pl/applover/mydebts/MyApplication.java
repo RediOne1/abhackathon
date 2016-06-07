@@ -61,7 +61,7 @@ public class MyApplication extends Application implements FirebaseAuth.AuthState
 			reference
 					.child("users")
 					.child(fireUser.getUid())
-					.setValue(user);
+					.updateChildren(user.toMap());
 			FirebaseAuth.getInstance().removeAuthStateListener(MyApplication.this);
 
 		}
